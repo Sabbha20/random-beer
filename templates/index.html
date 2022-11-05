@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Random Beer App 🍺</title>
+        <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="../css/ghost-blog.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/ghost-blog.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Kanit&display=swap" rel="stylesheet">
+    </head>
+
+    <section class="hero is-medium">
+        <div class="hero-head">
+            <div class="container">
+                <div class="notification is-small is-warning">
+                    <div class="container has-text-centered">
+                   <strong>Reload</strong> to Generate Random Beer Content
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title post-title" style="font-size: 3.5rem;"> {{beer.name}}</h1>
+                <h2 class="subtitle" style="font-size: 2.5rem;">
+                    {{beer.tagline}}
+                </h2>
+                
+            </div>
+        </div>
+    </section>
+    <section class="blog-posts">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10 is-offset-1">
+                    <div class="columns featured-post is-multiline">
+                        <div class="column is-12 post">
+                            <article class="columns featured">
+                                <div class="column is-7 post-img ">
+                                    <img src="{{beer.image_url}}" alt="">
+                                </div>
+                                <div class="column is-5 featured-content va">
+                                    <div>
+                                        
+                                        <h3 class="heading post-category">🍻 First Brewed:{{beer.first_brewed}}</h3>
+                                        <h1 class="title post-title">{{beer.name}}</h1>
+                                        <p class="post-excerpt">{{beer.description}}</p>
+                                        <br><br>
+                                        <h3 class="heading post-category">ABV:{{beer.abv}}</h3>
+                                        <h3 class="heading post-category">Attenuation Level:{{beer.attenuation_level}}</h3>
+                                        <h3 class="heading post-category">PH:{{beer.ph}}</h3>
+                                        <h3 class="heading post-category">EBC:{{beer.ebc}}</h3>
+                                        <br><br>
+                                        <h2 class="title is-2">Food Pairing 🥃</h2>
+                                        <div class='list'>
+                                        <ol type="i" class="customIndent">
+                                            {% for foods in beer.food_pairing %}
+                                            <div class='list-item'>
+                                            <li>{{foods}}</li>
+                                        </div>
+                                            {% endfor %}
+                                          </ol>
+                                        </div>
+                                            
+                                        
+                                            
+                                        
+
+                                        <br><br>
+                                        <span class="tag is-warning">Vol: {{beer.volume_val}}{{beer.volume_unit}}</span> 
+                                        <span class="tag is-warning">Boil Vol: {{beer.boil_volume_val}}{{beer.boil_volume_unit}}</span> 
+                                        
+                                    </div>
+
+                                </div>
+                            </article>
+                            <article class="columns featured">
+                                <div class="column is-11 featured-content va">
+                                    <div>
+                                        <h3 class="heading post-category">Contributed By:{{beer.contributed_by}}</h3><br><br>
+                                        <h1 class="title">{{beer.name}}</h1>
+                                        <h3 class="heading post-category">🍻 Tips:</h3><p class="post-excerpt ">
+                                            {{beer.brewers_tips}}</p>
+                                        <br>
+                                        <h3 class="heading post-category">🍻 Ingredients:</h3>
+
+                                        <span class="tag is-warning">Malt(
+                                            
+                                            {% for m in beer.malt %}
+                                                {{m['name']}}{{", " if not loop.last else "" }}
+                                            {% endfor %}
+                                                
+                                            )</span> 
+                                        <span class="tag is-warning">Hops(
+                                            
+                                            {% for hop in beer.hops %}
+                                                {{hop['name']}}{{", " if not loop.last else "" }}
+                                            {% endfor %}
+                                                
+                                            )</span> 
+                                        <span class="tag is-warning">Yeast({{beer.yeast}})</span> 
+                                    </div>
+
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <hr>
+            <section class="section is-medium">
+                <footer class="has-text-centered is-flex-align-items-flex-end mt-auto">
+                    <small>
+                      <span>Copyright @2022</span>
+                      <br />
+                    </small>
+                    <a href="/">SABBHA MONDAL</a>
+                  </footer>
+              </section>
+            
+    </section>
+    
+
+</html>
